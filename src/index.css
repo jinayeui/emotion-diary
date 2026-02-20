@@ -12,6 +12,7 @@
 
 img {
   display: block;
+  width: 100%;
 }
 
 a {
@@ -20,8 +21,8 @@ a {
 
 button {
   border: none;
-  background: transparent;
   outline: none;
+  background: transparent;
   display: block;
   box-sizing: border-box;
   cursor: pointer;
@@ -32,10 +33,18 @@ button {
 input {
   box-sizing: border-box;
   outline: none;
+  border: none;
 }
 
 label {
   font-size: 0;
   display: block;
   box-sizing: border-box;
+}
+
+textarea {
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  resize: vertical; /* 세로로만 크기 조절 가능 */
 }

@@ -1,14 +1,13 @@
 import styled from 'styled-components';
-import Button from './Button';
 
-export default function Header({ title, leftChild, rightChild }) {
+export default function Header({ title, leftEl, rightEl }) {
 	return (
 		<>
 			<HeaderTag>
 				<Inner>
-					{leftChild}
+					{leftEl}
 					<Title>{title}</Title>
-					{rightChild}
+					{rightEl}
 				</Inner>
 			</HeaderTag>
 		</>
@@ -16,7 +15,7 @@ export default function Header({ title, leftChild, rightChild }) {
 }
 
 const HeaderTag = styled.header`
-	height: 65px;
+	height: 70px;
 	border-bottom: 1px solid rgb(226, 226, 226);
 	padding: 0 20px;
 	box-sizing: border-box;
@@ -31,7 +30,7 @@ const Inner = styled.div`
 
 const Title = styled.h1`
 	font-size: 22px;
-	font-weight: 600;
+	font-weight: bold;
 	position: absolute;
 	top: 50%;
 	left: 50%;

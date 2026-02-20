@@ -1,24 +1,40 @@
 import './App.css';
-import { Routes, Route, Link } from 'react-router-dom';
-import { useReducer, useRef, useContext, createContext } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { useReducer, useRef, createContext } from 'react';
 import Home from './pages/Home';
 import Diary from './pages/Diary';
 import New from './pages/New';
 import Edit from './pages/Edit';
 import NotFound from './pages/NotFound';
-// import { getImage } from './util/getImage';
-import Header from './components/Header';
 
-const DiaryStateContext = createContext();
-const DiaryDispatchContext = createContext();
+export const DiaryStateContext = createContext();
+export const DiaryDispatchContext = createContext();
 
 // 초기 일기 데이터 (앱이 처음 실행될 때 보여줄 샘플 데이터)
 const mockData = [
 	{
 		id: 1,
-		createdDate: new Date().getTime(),
-		emotionId: 1,
-		content: '1번 일기 내용',
+		createdDate: new Date('2026-01-23').getTime(),
+		emotionId: 'emotion_5',
+		content: '1월 23일 번호 123. 바나프레소 통팥밀크티. 냠냠쩝쩝후룹후룹',
+	},
+	{
+		id: 2,
+		createdDate: new Date('2026-11-01').getTime(),
+		emotionId: 'emotion_2',
+		content: '생일이햐아아',
+	},
+	{
+		id: 3,
+		createdDate: new Date('2025-12-25').getTime(),
+		emotionId: 'emotion_1',
+		content: '꾸리스마스',
+	},
+	{
+		id: 4,
+		createdDate: new Date('2026-01-26').getTime(),
+		emotionId: 'emotion_3',
+		content: '아ㅏ',
 	},
 ];
 
@@ -46,7 +62,7 @@ const reducer = (state, action) => {
 function App() {
 	// useReducer로 상태 관리 시작 (data: 현재 일기 목록 배열, dispatch: 상태 변경을 요청하는 함수)
 	const [data, dispatch] = useReducer(reducer, mockData);
-	const idRef = useRef(2);
+	const idRef = useRef(5);
 
 	// 일기 생성 함수
 	const onCreate = (createdDate, emotionId, content) => {
@@ -97,11 +113,6 @@ function App() {
 					</Routes>
 				</DiaryDispatchContext.Provider>
 			</DiaryStateContext.Provider>
-
-			<nav>
-				<Link to={'/'}>Home</Link>
-				<Link to={'/diary'}>Diary</Link>
-			</nav>
 		</div>
 	);
 }
