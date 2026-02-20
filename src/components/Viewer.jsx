@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import { getColor, getImage } from '../util/getEmotion';
-import { useContext } from 'react';
-import { EmotionListContext } from '../App';
+import { emotionList } from '../util/constants';
 
 export default function Viewer({ emotionId, content }) {
-	const emotionList = useContext(EmotionListContext);
-	const emotionName = emotionList.find(
+const emotionName = emotionList.find(
 		(item) => item.emotionId === emotionId
 	)?.emotionName;
 

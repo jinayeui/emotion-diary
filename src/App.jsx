@@ -9,30 +9,6 @@ import NotFound from './pages/NotFound';
 
 export const DiaryStateContext = createContext();
 export const DiaryDispatchContext = createContext();
-export const EmotionListContext = createContext();
-
-const emotionList = [
-	{
-		emotionId: 'emotion_1',
-		emotionName: 'Very good',
-	},
-	{
-		emotionId: 'emotion_2',
-		emotionName: 'Good',
-	},
-	{
-		emotionId: 'emotion_3',
-		emotionName: 'Not bad',
-	},
-	{
-		emotionId: 'emotion_4',
-		emotionName: 'Bad',
-	},
-	{
-		emotionId: 'emotion_5',
-		emotionName: 'Very bad',
-	},
-];
 
 // 초기 일기 데이터 (앱이 처음 실행될 때 보여줄 샘플 데이터)
 const mockData = [
@@ -124,21 +100,19 @@ function App() {
 
 	return (
 		<div id="wrap">
-			<EmotionListContext.Provider value={emotionList}>
-				<DiaryStateContext.Provider value={data}>
-					<DiaryDispatchContext.Provider
-						value={{ onCreate, onUpdate, onDelete }}
-					>
-						<Routes>
-							<Route path="/" element={<Home />}></Route>
-							<Route path="/diary/:id" element={<Diary />}></Route>
-							<Route path="/new" element={<New />}></Route>
-							<Route path="/edit/:id" element={<Edit />}></Route>
-							<Route path="/*" element={<NotFound />}></Route>
-						</Routes>
-					</DiaryDispatchContext.Provider>
-				</DiaryStateContext.Provider>
-			</EmotionListContext.Provider>
+			<DiaryStateContext.Provider value={data}>
+				<DiaryDispatchContext.Provider
+					value={{ onCreate, onUpdate, onDelete }}
+				>
+					<Routes>
+						<Route path="/" element={<Home />}></Route>
+						<Route path="/diary/:id" element={<Diary />}></Route>
+						<Route path="/new" element={<New />}></Route>
+						<Route path="/edit/:id" element={<Edit />}></Route>
+						<Route path="/*" element={<NotFound />}></Route>
+					</Routes>
+				</DiaryDispatchContext.Provider>
+			</DiaryStateContext.Provider>
 		</div>
 	);
 }

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { EmotionListContext } from '../App';
+import { emotionList } from '../util/constants';
 import Button from './Button';
 import EmotionItem from './EmotionItem';
 
@@ -15,8 +15,7 @@ const getStringedDate = (targetDate) => {
 };
 
 export default function Editor({ onSubmit, initData }) {
-	const emotionList = useContext(EmotionListContext);
-	const navi = useNavigate();
+const navi = useNavigate();
 	const [input, setInput] = useState(
 		initData ?? {
 			createdDate: new Date().getTime(),
