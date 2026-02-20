@@ -1,17 +1,25 @@
 import styled from 'styled-components';
 import { getColor, getImage } from '../util/getEmotion';
+import { useContext } from 'react';
+import { EmotionListContext } from '../App';
 
-export default function Viewer({ id, createdDate, emotionId, content }) {
+export default function Viewer({ emotionId, content }) {
+	const emotionList = useContext(EmotionListContext);
+	const emotionName = emotionList.find(
+		(item) => item.emotionId === emotionId
+	)?.emotionName;
+
 	return (
 		<>
 			<Section>
-				<Title>Today's emotion</Title>
+				<SectionTitle>Today's emotion</SectionTitle>
 				<EmotionWrap $emotionId={emotionId}>
-					<Img src={getImage(emotionId)} alt="" />
+					<Img src={getImage(emotionId)} alt="감정이미지" />
+					<Name>{emotionName}</Name>
 				</EmotionWrap>
 			</Section>
 			<Section>
-				<Title>Today's diary</Title>
+				<SectionTitle>Today's diary</SectionTitle>
 				<ContentWrap>
 					<Text>{content}</Text>
 				</ContentWrap>
@@ -26,7 +34,7 @@ const Section = styled.section`
 	}
 `;
 
-const Title = styled.h3`
+const SectionTitle = styled.h3`
 	text-align: center;
 	font-size: 20px;
 	font-family: 'Nanum Pen Script';
@@ -38,12 +46,21 @@ const EmotionWrap = styled.div`
 	height: 250px;
 	border-radius: 10px;
 	margin: 20px auto 0;
+	overflow: hidden;
 	background-color: ${(props) => getColor(props.$emotionId)}
 `;
 
 const Img = styled.img`
-	height: 100%;
-	object-fit: cover;
+	margin-top: -20px;
+`;
+
+const Name = styled.span`
+	color: #fff;
+	font-size: 15px;
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
 `;
 
 const ContentWrap = styled.div`

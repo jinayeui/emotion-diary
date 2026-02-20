@@ -1,32 +1,10 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import EmotionItem from './EmotionItem';
-import Button from './Button';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const emotionList = [
-	{
-		emotionId: 'emotion_1',
-		emotionName: 'Very good',
-	},
-	{
-		emotionId: 'emotion_2',
-		emotionName: 'Good',
-	},
-	{
-		emotionId: 'emotion_3',
-		emotionName: 'Not bad',
-	},
-	{
-		emotionId: 'emotion_4',
-		emotionName: 'Bad',
-	},
-	{
-		emotionId: 'emotion_5',
-		emotionName: 'Very bad',
-	},
-];
+import { EmotionListContext } from '../App';
+import Button from './Button';
+import EmotionItem from './EmotionItem';
 
 // timestamp를 YYYY-MM-DD 형식 문자열로 변환
 const getStringedDate = (targetDate) => {
@@ -37,6 +15,7 @@ const getStringedDate = (targetDate) => {
 };
 
 export default function Editor({ onSubmit, initData }) {
+	const emotionList = useContext(EmotionListContext);
 	const navi = useNavigate();
 	const [input, setInput] = useState(
 		initData ?? {
