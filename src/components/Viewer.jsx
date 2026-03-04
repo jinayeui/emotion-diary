@@ -34,7 +34,7 @@ const Section = styled.section`
 
 const SectionTitle = styled.h3`
 	text-align: center;
-	font-size: 20px;
+	font-size: 22px;
 	font-family: 'Nanum Pen Script';
 	letter-spacing: 0.02em !important;
 `;
@@ -66,12 +66,14 @@ const ContentWrap = styled.div`
 	min-height: 170px;
 	box-sizing: border-box;
 	padding: 20px;
-	background-color: #eee;
+	background-color: rgb(236,236,236);
 	margin-top: 20px;
-	border-radius: 8px;
+	border-radius: 10px;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 `;
 
 const Text = styled.p`
-	font-size: 16px;
-	line-height: 20px;
+	font-size: 17px;
+	line-height: 2;
 `;

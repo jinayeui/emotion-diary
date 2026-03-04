@@ -9,8 +9,8 @@ import Editor from '../components/Editor';
 export default function Edit() {
 	const params = useParams();
 	const navi = useNavigate();
-	const data = useContext(DiaryStateContext);
 	const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
+	const data = useContext(DiaryStateContext);
 	const [currentData, setCurrentData] = useState(); // 현재 다이어리의 데이터를 저장할 state
 
 	useEffect(() => {

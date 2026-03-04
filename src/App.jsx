@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { useReducer, useRef, createContext } from 'react';
+import { useReducer, useRef, createContext, useEffect } from 'react';
 import Home from './pages/Home';
 import Diary from './pages/Diary';
 import New from './pages/New';
@@ -62,12 +62,12 @@ const reducer = (state, action) => {
 function App() {
 	// useReducer로 상태 관리 시작 (data: 현재 일기 목록 배열, dispatch: 상태 변경을 요청하는 함수)
 	const [data, dispatch] = useReducer(reducer, mockData);
-	const idRef = useRef(5);
+	const idRef = useRef(mockData.length + 1);
 
 	// 일기 생성 함수
 	const onCreate = (createdDate, emotionId, content) => {
 		dispatch({
-			type: 'CREATE', // reducer에게 "CREATE" 작업임을 알림
+			type: 'CREATE',
 			data: {
 				id: idRef.current++,
 				createdDate,
@@ -80,7 +80,7 @@ function App() {
 	// 일기 수정 함수
 	const onUpdate = (id, createdDate, emotionId, content) => {
 		dispatch({
-			type: 'UPDATE', // reducer에게 "UPDATE" 작업임을 알림
+			type: 'UPDATE',
 			data: {
 				id: id,
 				createdDate,
@@ -93,7 +93,7 @@ function App() {
 	// 일기 삭제 함수
 	const onDelete = (id) => {
 		dispatch({
-			type: 'DELETE', // reducer에게 "DELETE" 작업임을 알림
+			type: 'DELETE',
 			id,
 		});
 	};
