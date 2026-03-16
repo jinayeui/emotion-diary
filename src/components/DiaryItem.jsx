@@ -8,12 +8,12 @@ export default function DiaryItem({ id, emotionId, createdDate, content }) {
 
 	return (
 		<Item onClick={() => navi(`/diary/${id}`)}>
-			{/*
-			💡 왜 $ 접두사?
-			styled-components v5.1+에서는:
-			$로 시작하는 prop = 스타일링 전용, DOM에 전달 안 됨
-			$ 없는 prop = DOM에 전달됨 (React 경고 발생)
-			*/}
+			{/**
+			 * $로 시작하는 prop = 스타일링 전용, DOM에 전달 안 됨
+			 * $ 없는 prop = DOM에 전달됨 (React 경고 발생)
+			 * 
+			 * => 단순 스타일 적용 목적이라면 $ 붙이는 것을 권장
+			 */}
 			<ImageWrap $emotionId={emotionId}>
 				<Img src={getImage(emotionId)} alt="감정이미지" />
 			</ImageWrap>

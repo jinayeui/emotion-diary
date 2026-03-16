@@ -4,7 +4,7 @@ import { emotionList } from '../util/constants';
 
 export default function Viewer({ emotionId, content }) {
 const emotionName = emotionList.find(
-		(item) => item.emotionId === emotionId
+		(item) => String(item.emotionId) === String(emotionId)
 	)?.emotionName;
 
 	return (

@@ -1,30 +1,20 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import { DiaryStateContext, DiaryDispatchContext } from '../App';
+import { useContext } from 'react';
+import { DiaryDispatchContext } from '../App';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import Editor from '../components/Editor';
+import { useDiary } from '../hooks/useDiary';
+import Loading from '../components/Loading';
 
 // 기존 일기 수정
 export default function Edit() {
 	const params = useParams();
 	const navi = useNavigate();
 	const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
-	const data = useContext(DiaryStateContext);
-	const [currentData, setCurrentData] = useState(); // 현재 다이어리의 데이터를 저장할 state
-
-	useEffect(() => {
-		const currentDiary = data.find(
-			(item) => String(item.id) === String(params.id),
-		);
-
-		if (!currentDiary) {
-			alert('존재하지 않는 일기입니다.');
-			navi('/', { replace: true });
-		} else {
-			setCurrentData(currentDiary); // 현재 다이어리 데이터 전달
-		}
-	}, [params.id]);
+	
+	const currentData = useDiary(params.id);
+	if (!currentData) return <Loading text={'일기를 불러오는 중입니다...'} />;
 
 	const deleteDiary = () => {
 		if (window.confirm('삭제하겠습니까?')) {
